@@ -1,5 +1,6 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
+// pod b) Koriscenje tajmera0
 
 unsigned long ms = 0;
 
