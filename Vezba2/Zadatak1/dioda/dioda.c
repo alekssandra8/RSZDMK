@@ -3,9 +3,9 @@
 
 // pod c) Koriscenje tajmera0, ali pomocu  nove funkcije
 
-void my_delay(unsigned long ms)
+unsigned long my_delay(unsigned long ms)
 {
-
+	return ms;
 }
 
 unsigned long ms = 0;
