@@ -1,6 +1,6 @@
 #include <avr/io.h>
 #include <util/delay.h>
-
+// izvorni kod
 int main()
 {
 	DDRB |= 1 << 5;
