@@ -1,14 +1,19 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-// pod c) Koriscenje tajmera0, ali pomocu  nove funkcije
+// pod c) Koriscenjem tajmera0, ali pomocu  nove funkcije
 
-unsigned long my_delay(unsigned long ms)
+volatile unsigned long ms = 0;
+
+unsigned long my_delay(unsigned long delay_length)
 {
+	unsigned long t0;
+
+	t0 = ms;
+	while((t0 - ms) < delay_length);
+
 	return ms;
 }
-
-unsigned long ms = 0;
 
 ISR(TIMER0_COMPA_vect)
 {
@@ -17,6 +22,9 @@ ISR(TIMER0_COMPA_vect)
 
 int main()
 {
+	unsigned long period = 1000;
+	int repetitions = 5, i;
+
 	DDRB |= 1 << 5;
 
 	TCCR0A = 0x02;
