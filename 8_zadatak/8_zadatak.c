@@ -12,7 +12,7 @@ int main()
 
 	while(1)
 	{
-		sprintf(str, "Iterativno--Unesite poziciju broja Fib. niza:\r\n", broj);
+		sprintf(str, "Unesite poziciju broja Fib. niza:\r\n", broj);
 		usartPutString(str);
 
 		while(!usartAvailable());
