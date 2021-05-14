@@ -5,10 +5,10 @@
 
 int8_t Rx_Buffer[UART_BUFFER_SIZE];		// Prijemni FIFO bafer
 volatile uint8_t Rx_Buffer_Size = 0;	// Broj karaktera u prijemnom baferu
-volatile uint8_t Rx_Buffer_First = 0;   // char = uint8_t !
+volatile uint8_t Rx_Buffer_First = 0;
 volatile uint8_t Rx_Buffer_Last = 0;
 
-ISR(USART_RX_vect)   // koristimo rx prekid ovde!
+ISR(USART_RX_vect)
 {
 	Rx_Buffer[Rx_Buffer_Last++] = UDR0;		// Ucitavanje primljenog karaktera
 	Rx_Buffer_Last &= UART_BUFFER_SIZE - 1;	// Povratak na pocetak u slucaju prekoracenja
@@ -89,13 +89,13 @@ int8_t usartGetChar()
 	Rx_Buffer_Size--;							// Dekrement brojaca karaktera u prijemnom baferu
 
 	return c;
-} // 88. red - ANDujemo sa 64 i jos -1 i vrati ga na 0!
+} // 88. red - ANDujemo sa 64 i jos -1 i vrati ga na 0
 
 uint8_t usartGetString(int8_t *s)
 {
 	uint8_t len = 0;
 
-	while(Rx_Buffer_Size) 			// Ima karaktera u faferu?
+	while(Rx_Buffer_Size) 			// Ima karaktera u baferu?
 		s[len++] = usartGetChar();	// Ucitavanje novog karaktera
 
 	s[len] = 0;						// Terminacija stringa
